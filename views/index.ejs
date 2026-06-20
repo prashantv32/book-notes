@@ -1,0 +1,53 @@
+<%- include("partials/header.ejs") %>
+<main>
+    <div class="container">
+        
+        <div class="toolbar">
+            <div class="sort-group">
+                <a href="/sort?by=rating" class="sort-btn" >rating</a>
+                <a href="/sort?by=date_read" class="sort-btn" >date</a>
+                <a href="/sort?by=title" class="sort-btn" >title</a>
+
+            </div>
+            <a href="/add" class="btn-primary">+ Add book</a>
+        </div>
+        <div class="books-list">
+    <% books.forEach(book => { %>
+        <div class="book-row">
+            <img class="book-cover"
+                src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-M.jpg"
+                alt="<%= book.title %> cover"
+                onerror="this.src='/images/no-cover.png'"
+            />
+            <div class="book-main">
+                <div class="book-header">
+                    <h2 class="book-title"><%= book.title %></h2>
+                    <div class="rating-wrap">
+                        <span class="rating-num"><%= book.rating %>/10</span>
+                        <div class="rating-bar">
+                            <% const w = book.rating * 10; %>
+                            <div class="rating-fill" style="width: <%= w %>%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="book-meta">
+                    <span class="book-author"><%= book.author %></span>
+                    <span class="book-date"><%= book.date_read ? book.date_read.toDateString() : "no date" %></span>
+                </div>
+                <p class="book-notes"><%= book.notes %></p>
+                <div class="book-actions">
+                    <a href="/edit/<%= book.id %>" class="btn-edit">edit</a>
+                    <form action="/delete/<%= book.id %>" method="POST">
+                        <button type="submit" class="btn-delete">delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <% }) %>
+</div>
+
+    </div>
+    
+
+</main>
+<%- include("partials/footer.ejs") %>
