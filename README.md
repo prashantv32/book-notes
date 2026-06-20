@@ -132,5 +132,9 @@ The app is deployed on **Render** (free Web Service tier), connected directly to
 
 In production, the `DATABASE_URL` environment variable is set in Render's dashboard rather than in a local `.env` file.
 
+## A note on the live demo
+
+This app has no authentication or user accounts — it's a single shared database, so anyone with the live link can add, edit, or delete entries, and everyone sees the same list. That's expected behavior for now, not a bug. Adding user accounts (so each person sees only their own books) is on my list of next steps.
+
 
 
