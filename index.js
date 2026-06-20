@@ -2,6 +2,7 @@ import express from "express";
 import pg from "pg";
 import 'dotenv/config';
 
+
 const app = express();
 const port = 3000;
 
@@ -10,12 +11,11 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true })); 
 
 const db = new pg.Client({
-    user: process.env.DB_USER,
-    host: process.env.DB_HOST,
-    database: process.env.DB_NAME,
-    password: process.env.DB_PASSWORD,
-    port: process.env.DB_PORT
+    connectionString: process.env.DATABASE_URL,
+    ssl: process.env.NODE_ENV === "production" ? { rejectUnauthorized: false } : false
 });
+
+
 
 db.connect();
 
@@ -74,6 +74,7 @@ app.post("/edit/:id", async (req, res) => {
     res.redirect("/");
     
 });
+
 
 
 // POST /delete/:id → delete the book from db
