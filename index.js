@@ -13,6 +13,8 @@ const db = new pg.Client({
     connectionString: process.env.DATABASE_URL,
     ssl: process.env.NODE_ENV === "production" ? { rejectUnauthorized: false } : false
 });
+const u = new URL(process.env.DATABASE_URL);
+console.log("DB user:", u.username, "| host:", u.hostname, "| pw length:", u.password.length);
 
 db.connect()
     .then(() => console.log("Connected to the database"))
