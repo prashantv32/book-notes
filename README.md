@@ -4,7 +4,7 @@ A personal book notes tracker — inspired by [Derek Sivers' book notes page](ht
 
 ## Live demo
 
-[https://book-notes-app-cmkf.onrender.com](https://book-notes-app-cmkf.onrender.com)
+https://book-notes-dted.onrender.com/
 
 > Hosted on Render's free tier, so the first request after a period of inactivity may take 30–50 seconds to wake up.
 
